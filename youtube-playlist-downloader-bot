@@ -1,0 +1,22 @@
+import sys
+import yt_dlp
+
+# Define default path
+path = r"D:\videos"
+
+# Define download format
+format = 'best[ext=mp4]'
+
+# Playlist url
+url = sys.argv[1]
+
+# Download all videos in a playlist
+ydl_opts = {
+    'ignoreerrors': True,
+    'abort_on_unavailable_fragments': True,
+    'format': format,
+    'outtmpl': path + '\\Playlists\%(playlist_uploader)s ## %(playlist)s\%(title)s ## %(uploader)s ## %(id)s.%(ext)s',
+}
+
+with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+    ydl.download(url)
